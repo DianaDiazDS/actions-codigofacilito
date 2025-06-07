@@ -1,0 +1,13 @@
+name: "hola mundo"
+on:
+  push:
+    branches: ["main"]
+
+jobs: 
+  deploy-codigofacilito:
+  runs-on: ubuntu-latest
+  steps:
+    - name: Deploy to Codigofacilito
+      run: echo "hacemos pull del codigo"
+      run: echo "correr migraciones"
+      run: echo "Publicar version"
