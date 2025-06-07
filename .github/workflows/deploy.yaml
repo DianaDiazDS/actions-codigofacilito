@@ -11,4 +11,4 @@ jobs:
       - run: echo "hacemos pull del codigo"
       - run: echo "correr migraciones"
       - run: echo "Publicar version"
-      - run: echo "nueva rama"
+      - run: echo "nueva rama2"
