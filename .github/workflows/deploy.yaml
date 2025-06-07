@@ -7,9 +7,7 @@ jobs:
   deploy-codigofacilito:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
       - uses: actions/checkout@v2
-      - name: Deploy to Codigofacilito
       - run: echo "hacemos pull del codigo"
       - run: echo "correr migraciones"
       - run: echo "Publicar version"
