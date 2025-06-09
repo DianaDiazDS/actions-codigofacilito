@@ -64,7 +64,19 @@ jobs:
       - name: holi
         run: echo "cuarto trabajo"
 
-
+  quinto_job:
+  #concatenar con | o &&
+    if: ${{ github.ref == 'refs/heads/master' && github.actor == 'DianaDiazDS' }}
+    needs: 
+      - primer_job
+      - segundo_job
+    runs-on: ubuntu-latest
+    steps:
+      - name: holi
+        run: echo "quinto trabajo"
+      - name: holi-bloqueado
+        if: false
+        run: echo "quinto trabajo-bloqueado"
 
   # diez_job:
   #   needs: tercer_job
