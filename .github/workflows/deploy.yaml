@@ -24,7 +24,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
       - name: holi
         run: echo "hola mundo"
 
@@ -38,7 +37,6 @@ jobs:
     # depende del primer job puedo poner mas
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
       - name: holi
         run: echo "segundo trabajo"
 
@@ -49,12 +47,11 @@ jobs:
     needs: primer_job
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
       - name: holi
-        run: echo "segundo trabajo"
+        run: echo "tercer trabajo"
 
   cuarto_job:
-    if: ${{ github.ref == 'refs/heads/main' }}
+    if: ${{ github.ref == 'refs/heads/master' }}
     # el if dice que no corre este si no es main
     #el contexto se llama github
     # y la variable ref es la rama en la que se esta trabajando
@@ -64,9 +61,8 @@ jobs:
       - segundo_job
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
       - name: holi
-        run: echo "segundo trabajo"
+        run: echo "cuarto trabajo"
 
 
 
