@@ -17,7 +17,7 @@
 name: segunda clase CI deployment server
 on:
   push:
-    branches: ["main","master"]  
+    branches: ["master"]  
 jobs: 
 
   primer_job:
