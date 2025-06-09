@@ -1,14 +1,79 @@
-name: "hola mundo"
+# name: "primer clase"
+# on:
+#   push:
+#     branches: ["main","master"]
+
+# jobs: 
+#   deploy-codigofacilito:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       - run: echo "hacemos pull del codigo"
+#       - run: echo "correr migraciones"
+#       - run: echo "Publicar version"
+#       - run: echo "nueva rama3"
+
+
+name: segunda clase CI deployment server
 on:
   push:
-    branches: ["main","master"]
-
+    branches: ["main","master"]  
 jobs: 
-  deploy-codigofacilito:
+
+  primer_job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: holi
+      - run: echo "hola mundo"
+
+
+  segundo_job:
+    # configuracino o directiva
+    needs: primer_job
+    # needs: 
+      # -primer_job
+      # -otro
+    # depende del primer job puedo poner mas
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: echo "hacemos pull del codigo"
-      - run: echo "correr migraciones"
-      - run: echo "Publicar version"
-      - run: echo "nueva rama3"
+      - name: holi
+      - run: echo "segundo trabajo"
+
+
+  tercer_job:
+    if: false
+    # el if dice que no corre este
+    needs: primer_job
+    runs-on: ubuntu-latest
+    steps:
+      - name: holi
+      - run: echo "segundo trabajo"
+
+  cuarto_job:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    # el if dice que no corre este si no es main
+    #el contexto se llama github
+    # y la variable ref es la rama en la que se esta trabajando
+
+    needs: 
+      -primer_job
+      -segundo_job
+    runs-on: ubuntu-latest
+    steps:
+      - name: holi
+      - run: echo "segundo trabajo"
+
+
+
+  # diez_job:
+  #   needs: tercer_job
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - name: holi
+  #     - uses: actions/checkout@v2
+  #     - name_ configurar Node.js
+  #       uses: actions/setup-node@v2
+  #       with:
+  #         node-version: '18'
