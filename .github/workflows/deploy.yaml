@@ -24,6 +24,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
       - name: holi
       - run: echo "hola mundo"
 
@@ -37,6 +38,7 @@ jobs:
     # depende del primer job puedo poner mas
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: holi
       - run: echo "segundo trabajo"
 
@@ -47,6 +49,7 @@ jobs:
     needs: primer_job
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: holi
       - run: echo "segundo trabajo"
 
@@ -61,6 +64,7 @@ jobs:
       -segundo_job
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: holi
       - run: echo "segundo trabajo"
 
