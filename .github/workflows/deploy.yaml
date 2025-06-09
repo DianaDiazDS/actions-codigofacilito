@@ -78,6 +78,18 @@ jobs:
         if: false
         run: echo "quinto trabajo-bloqueado"
 
+  sexto_job:
+  #concatenar con | o &&
+    if: ${{ github.ref == 'refs/heads/master' && github.actor == 'DianaDiazDS' }}
+    runs-on: ubuntu-latest
+
+    env:
+      VARIABLE: "varible de entrono 2"
+      OTRO: "otra variable"
+    steps:
+      - name: VARIABLES DE ENTORNO
+        run: echo "la variable es $VARIABLE y la otra es $OTRO"
+       
   # diez_job:
   #   needs: tercer_job
   #   runs-on: ubuntu-latest
