@@ -76,7 +76,7 @@ jobs:
         run: echo "quinto trabajo"
       - name: holi-bloqueado
         if: false
-        run: echo "quinto trabajo-bloqueado"
+        run: echo "quinto trabajo-bloqueado cambio luis prueba"
 
   sexto_job:
   #concatenar con | o &&
