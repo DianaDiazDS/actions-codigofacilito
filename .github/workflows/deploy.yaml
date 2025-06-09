@@ -26,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: holi
-      - run: echo "hola mundo"
+        run: echo "hola mundo"
 
 
   segundo_job:
@@ -40,7 +40,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: holi
-      - run: echo "segundo trabajo"
+        run: echo "segundo trabajo"
 
 
   tercer_job:
@@ -51,7 +51,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: holi
-      - run: echo "segundo trabajo"
+        run: echo "segundo trabajo"
 
   cuarto_job:
     if: ${{ github.ref == 'refs/heads/main' }}
@@ -66,7 +66,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: holi
-      - run: echo "segundo trabajo"
+        run: echo "segundo trabajo"
 
 
 
@@ -77,7 +77,7 @@ jobs:
   #   steps:
   #     - name: holi
   #     - uses: actions/checkout@v2
-  #     - name_ configurar Node.js
+  #     - name: configurar Node.js
   #       uses: actions/setup-node@v2
   #       with:
   #         node-version: '18'
