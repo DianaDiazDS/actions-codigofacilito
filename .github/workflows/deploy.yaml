@@ -60,8 +60,8 @@ jobs:
     # y la variable ref es la rama en la que se esta trabajando
 
     needs: 
-      -primer_job
-      -segundo_job
+      - primer_job
+      - segundo_job
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
