@@ -3,7 +3,7 @@
 #   push:
 #     branches: ["main","master"]
 
-# jobs: 
+# jobs:
 #   deploy-codigofacilito:
 #     runs-on: ubuntu-latest
 #     steps:
@@ -13,13 +13,11 @@
 #       - run: echo "Publicar version"
 #       - run: echo "nueva rama3"
 
-
 name: segunda clase CI deployment server
 on:
   push:
-    branches: ["master"]  
-jobs: 
-
+    branches: ["master"]
+jobs:
   primer_job:
     runs-on: ubuntu-latest
 
@@ -27,19 +25,17 @@ jobs:
       - name: holi
         run: echo "hola mundo"
 
-
   segundo_job:
     # configuracino o directiva
     needs: primer_job
-    # needs: 
-      # -primer_job
-      # -otro
+    # needs:
+    # -primer_job
+    # -otro
     # depende del primer job puedo poner mas
     runs-on: ubuntu-latest
     steps:
       - name: holi
         run: echo "segundo trabajo"
-
 
   tercer_job:
     if: false
@@ -56,7 +52,7 @@ jobs:
     #el contexto se llama github
     # y la variable ref es la rama en la que se esta trabajando
 
-    needs: 
+    needs:
       - primer_job
       - segundo_job
     runs-on: ubuntu-latest
@@ -65,9 +61,9 @@ jobs:
         run: echo "cuarto trabajo"
 
   quinto_job:
-  #concatenar con | o &&
+    #concatenar con | o &&
     if: ${{ github.ref == 'refs/heads/master' && github.actor == 'DianaDiazDS' }}
-    needs: 
+    needs:
       - primer_job
       - segundo_job
     runs-on: ubuntu-latest
@@ -79,7 +75,8 @@ jobs:
         run: echo "quinto trabajo-bloqueado cambio luis prueba"
 
   sexto_job:
-  #concatenar con | o &&
+    name: "nombre asignado sexto job"
+    #concatenar con | o &&
     if: ${{ github.ref == 'refs/heads/master' && github.actor == 'DianaDiazDS' }}
     runs-on: ubuntu-latest
 
@@ -89,7 +86,55 @@ jobs:
     steps:
       - name: VARIABLES DE ENTORNO
         run: echo "la variable es $VARIABLE y la otra es $OTRO jeje"
+
+  septimo_job:
+    name: "acciones"
+    runs-on: ubuntu-latest
+    steps:
+      - name: working dir
+        run: ls -al
+        # donde esta la direcin actual
+      - name: action 
+        uses: actions/checkout@v4
+        #se pone action/nombre/version
+      - name: working dir after action
+        run: ls -al
+#compartir informacion entre jobs
+  octavo_job:
+    name: "acciones"
+    runs-on: ubuntu-latest
+    steps:
+      - name: working dir
+        id: step_id #para llamar el steps
+        run: echo "my_variable_entorno=hola mundo" >> $GITHUB_OUTPUT
+      - name: obetener mensaje
+        run: echo "el mensaje es ${{ steps.step_id.outputs.my_variable_entorno }}"
+      #   run: ls -al
+      #   # donde esta la direcin actual
+      # - name: action 
+      #   uses: actions/checkout@v4
+      #   with:
+      #     hola: 12
+      #   #se pone action/nombre/version
+      # - name: working dir after action
+      #   run: ls -al 
        
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+        # donde esta la d
   # diez_job:
   #   needs: tercer_job
   #   runs-on: ubuntu-latest
