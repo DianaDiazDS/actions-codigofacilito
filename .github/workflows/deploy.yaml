@@ -99,7 +99,7 @@ jobs:
         #se pone action/nombre/version
       - name: working dir after action
         run: ls -al
-#compartir informacion entre jobs
+#compartir informacion entre jobs por medio de outputs
   octavo_job:
     name: "octavo_job acciones"
     runs-on: ubuntu-latest
@@ -122,9 +122,22 @@ jobs:
     steps:
       - name: obtener mensaje
         run: echo "el mensaje es $salida2"
-   
-       
-       
+        #usamos salida 2 de otro job
+
+
+  noveno_job:
+    name: "noveno_job archivos"
+    runs-on: ubuntu-latest
+    steps:
+      - name: generar archivos
+        run: |
+          echo "hola mundo" >> archivo.log
+        # echo "otro mensaje" >> otro.txt
+      - name: subir archivos
+        uses: actions/upload-artifact@v4
+        with:
+          name: archivos-test
+          path: archivo.log
        
        
        
