@@ -138,8 +138,12 @@ jobs:
         with:
           name: archivos-test
           path: archivo.log
-       
-       
+      - name: descargar archivos
+        uses: actions/download-artifact@v4
+        with:
+          name: archivos-test 
+      - name: Cat file
+        run: cat archivo.log
        
        
        
