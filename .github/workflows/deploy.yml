@@ -11,4 +11,4 @@ jobs:
     steps: 
     # es el ecreto que cremos ne git 
       - name: Print variable     
-        run: echo "${{ secrets.TOKEN_SECRECT }} ${{ variable.NAME }}"
+        run: echo "${{ secrets.TOKEN_SECRECT }} ${{ vars.NAME }}"
