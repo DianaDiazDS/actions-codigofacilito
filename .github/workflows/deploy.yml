@@ -75,9 +75,22 @@ jobs:
       #depende del anterior job
       needs: segundo_job_build
 
+      permissions:
+        pages: write
+        id-token: write
+        #se le da permiso a la accion de github pages para escribir en la pagina y usar el token de id
+      environment:
+        name: github-pages
+        url: ${{ steps.deployment-pages.outputs.page_url }}
+        #mismo id deployment-pages que en el deploy de github pages
+        #contiene la url de la pagina
       steps: 
-        - name: Print variable     
-          run: echo "desplegado"
+        - name: Deploy
+          id: deployment-pages
+          uses: actions/deploy-pages@v4
+
+
+
   # segundo_job_Deploy2: 
   #       if: ${{ always() }}
   #       #se ejecuta siempre asi tenga el needs
