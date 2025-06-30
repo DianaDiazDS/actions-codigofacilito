@@ -40,54 +40,54 @@ jobs:
 
 
   segundo_job_build: 
-      runs-on: ubuntu-latest
-              
-      steps: 
-        - name: Print variable     
-          run: echo "${{ secrets.TOKEN_SECRECT }} ${{ vars.NAME }}"
+    runs-on: ubuntu-latest
+            
+    steps: 
+      - name: Print variable     
+        run: echo "${{ secrets.TOKEN_SECRECT }} ${{ vars.NAME }}"
 
-        - name: checkout
-          uses: actions/checkout@v4
+      - name: checkout
+        uses: actions/checkout@v4
 
-        - name: setup
-          uses: actions/setup-node@v4
-          with:
-            node-version: '18'
-        # Se usa actions/setup-node para configurar el entorno de Node.js- del marketplace
-          
-        - name: Instalar dependencias
-          run: npm install
-
-        - name: Run test
-          run: npm run test
+      - name: setup
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      # Se usa actions/setup-node para configurar el entorno de Node.js- del marketplace
         
-        - name: Build page
-          run: npm run build
-        #se crea un archivo estatico en la carpeta public el cual se subira a github pages
-        - name: Upload artifact
-          if: ${{ always() }}
-          uses: actions/upload-pages-artifact@v3
-          with:
-            path: public/
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Run test
+        run: npm run test
+      
+      - name: Build page
+        run: npm run build
+      #se crea un archivo estatico en la carpeta public el cual se subira a github pages
+      - name: Upload artifact
+        if: ${{ always() }}
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public/
 
   segundo_job_Deploy: 
-      runs-on: ubuntu-latest
-      #depende del anterior job
-      needs: segundo_job_build
+    runs-on: ubuntu-latest
+    #depende del anterior job
+    needs: segundo_job_build
 
-      permissions:
-        pages: write
-        id-token: write
-        #se le da permiso a la accion de github pages para escribir en la pagina y usar el token de id
-      environment:
-        name: github-pages
-        url: ${{ steps.deployment-pages.outputs.page_url }}
-        #mismo id deployment-pages que en el deploy de github pages
-        #contiene la url de la pagina
-      steps: 
-        - name: Deploy
-          id: deployment-pages
-          uses: actions/deploy-pages@v4
+    permissions:
+      pages: write
+      id-token: write
+      #se le da permiso a la accion de github pages para escribir en la pagina y usar el token de id
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment-pages.outputs.page_url }}
+      #mismo id deployment-pages que en el deploy de github pages
+      #contiene la url de la pagina
+    steps: 
+      - name: Deploy
+        id: deployment-pages
+        uses: actions/deploy-pages@v4
 
 
 
