@@ -3,41 +3,9 @@
 
 on:
   push:
-    branches: ["master2_Modulo3"]
+    branches: ["main"]
 
 jobs:
-  # primer_job: 
-  #   runs-on: ubuntu-latest
-    
-  #   services:
-  #   #definir contenedor-se busca en docker hub apra buscar mas imagenes
-  #     # se usa redis como servicio para la aplicacion
-  #     #redis es un servicio de almacenamiento en memoria que se puede usar como base de datos, cache o broker de mensajes
-  #     redis:
-  #       image: redis
-  #       ports:
-  #         - 6379:6379
-       
-  #   steps: 
-
-  #     - name: Install redis cli
-  #       run: sudo apt-get update -y && sudo apt-get install redis-tools -y
-
-  #     - name: test redis
-  #       run: redis-cli -h localhost -p 6379 ping
-  #       #ping es un comando de redis que devuelve PONG si el servidor esta funcionando correctamente
-  #       # es el ecreto que cremos ne git 
-
-  #     - name: Print variable     
-  #       run: echo "${{ secrets.TOKEN_SECRECT }} ${{ vars.NAME }}"
-
-  #     - name: setup
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: '18'
-  #     # Se usa actions/setup-node para configurar el entorno de Node.js- del marketplace
-
-
 
   segundo_job_build: 
     runs-on: ubuntu-latest
@@ -90,18 +58,3 @@ jobs:
         uses: actions/deploy-pages@v4
 
 
-
-  # segundo_job_Deploy2: 
-  #       if: ${{ always() }}
-  #       #se ejecuta siempre asi tenga el needs
-  #       runs-on: ubuntu-latest
-  #       #depende del anterior job
-  #       needs: segundo_job_build
-
-  #       steps: 
-  #         - name: Print variable     
-  #           run: echo "desplegado"
-
-
-#contruir aplicacion y dejar archivo statico
-          
