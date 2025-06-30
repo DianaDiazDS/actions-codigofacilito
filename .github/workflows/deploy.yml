@@ -1,0 +1,14 @@
+name: Deploy
+
+on:
+  push:
+    branches: ["master2_Modulo3"]
+
+jobs:
+  primer_job: 
+    runs-on: ubuntu-latest
+
+    steps: 
+    # es el ecreto que cremos ne git 
+      - name: Print variable     
+        run: echo "${{ secrets.TOKEN_SECRECT }}"

@@ -1,0 +1,19 @@
+
+name: segunda clase CI deployment server
+on:
+  push:
+    branches: ["master"]
+jobs:
+  primer_job:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        messages: ["Hola mundo", "Hola GitHub Actions", "Hola segunda clase"]
+        numbers: [1, 2, 3]
+    steps: 
+      - name: primer mensaje    
+        run: echo "${{ matrix.message }} ${{ matrix.number }}"
+     #parenteiss se llaman interpolacion  {{}}
+     
+# Se usa matrix.include para emparejar manualmente cada mensaje con un número.
+# En cada iteración del job, se imprime el mensaje correspondiente con su número.
