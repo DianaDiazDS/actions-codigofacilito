@@ -18,6 +18,7 @@ jobs:
           - 6379:6379
        
     steps: 
+
       - name: Install redis cli
         run: sudo apt-get update -y && sudo apt-get install redis-tools -y
 
@@ -25,10 +26,15 @@ jobs:
         run: redis-cli -h localhost -p 6379 ping
         #ping es un comando de redis que devuelve PONG si el servidor esta funcionando correctamente
         # es el ecreto que cremos ne git 
+
       - name: Print variable     
         run: echo "${{ secrets.TOKEN_SECRECT }} ${{ vars.NAME }}"
+
       - name: setup
-      # Se usa actions/setup-node para configurar el entorno de Node.js- del marketplace
         uses: actions/setup-node@v4
         with:
           node-version: '18'
+      # Se usa actions/setup-node para configurar el entorno de Node.js- del marketplace
+        
+      - name: Instalar dependencias
+        run: npm install
