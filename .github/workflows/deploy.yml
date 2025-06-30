@@ -5,36 +5,56 @@ on:
     branches: ["master2_Modulo3"]
 
 jobs:
-  primer_job: 
-    runs-on: ubuntu-latest
+  # primer_job: 
+  #   runs-on: ubuntu-latest
     
-    services:
-    #definir contenedor-se busca en docker hub apra buscar mas imagenes
-      # se usa redis como servicio para la aplicacion
-      #redis es un servicio de almacenamiento en memoria que se puede usar como base de datos, cache o broker de mensajes
-      redis:
-        image: redis
-        ports:
-          - 6379:6379
+  #   services:
+  #   #definir contenedor-se busca en docker hub apra buscar mas imagenes
+  #     # se usa redis como servicio para la aplicacion
+  #     #redis es un servicio de almacenamiento en memoria que se puede usar como base de datos, cache o broker de mensajes
+  #     redis:
+  #       image: redis
+  #       ports:
+  #         - 6379:6379
        
-    steps: 
+  #   steps: 
 
-      - name: Install redis cli
-        run: sudo apt-get update -y && sudo apt-get install redis-tools -y
+  #     - name: Install redis cli
+  #       run: sudo apt-get update -y && sudo apt-get install redis-tools -y
 
-      - name: test redis
-        run: redis-cli -h localhost -p 6379 ping
-        #ping es un comando de redis que devuelve PONG si el servidor esta funcionando correctamente
-        # es el ecreto que cremos ne git 
+  #     - name: test redis
+  #       run: redis-cli -h localhost -p 6379 ping
+  #       #ping es un comando de redis que devuelve PONG si el servidor esta funcionando correctamente
+  #       # es el ecreto que cremos ne git 
 
-      - name: Print variable     
-        run: echo "${{ secrets.TOKEN_SECRECT }} ${{ vars.NAME }}"
+  #     - name: Print variable     
+  #       run: echo "${{ secrets.TOKEN_SECRECT }} ${{ vars.NAME }}"
 
-      - name: setup
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-      # Se usa actions/setup-node para configurar el entorno de Node.js- del marketplace
+  #     - name: setup
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: '18'
+  #     # Se usa actions/setup-node para configurar el entorno de Node.js- del marketplace
         
-      - name: Instalar dependencias
-        run: npm install
+  #     - name: Instalar dependencias
+  #       run: npm install
+
+
+  segundo_job: 
+      runs-on: ubuntu-latest
+              
+      steps: 
+        - name: Print variable     
+          run: echo "${{ secrets.TOKEN_SECRECT }} ${{ vars.NAME }}"
+
+        - name: checkout
+          uses: actions/checkout@v4
+
+        - name: setup
+          uses: actions/setup-node@v4
+          with:
+            node-version: '18'
+        # Se usa actions/setup-node para configurar el entorno de Node.js- del marketplace
+          
+        - name: Instalar dependencias
+          run: npm install
