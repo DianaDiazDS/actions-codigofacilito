@@ -8,3 +8,5 @@ const request = require('supertest');
   fs.writeFileSync('public/index.html', res.text);
   console.log('Static HTML generated!');
 })();
+
+// esta partes es para generar un archivo HTML estatico
