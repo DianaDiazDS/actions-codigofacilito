@@ -35,12 +35,10 @@ jobs:
   #       with:
   #         node-version: '18'
   #     # Se usa actions/setup-node para configurar el entorno de Node.js- del marketplace
-        
-  #     - name: Instalar dependencias
-  #       run: npm install
 
 
-  segundo_job: 
+
+  segundo_job_build: 
       runs-on: ubuntu-latest
               
       steps: 
@@ -58,3 +56,28 @@ jobs:
           
         - name: Instalar dependencias
           run: npm install
+
+        - name: Run test
+          run: npm run test
+
+
+  segundo_job_Deploy: 
+      runs-on: ubuntu-latest
+      #depende del anterior job
+      needs: segundo_job_build
+
+      steps: 
+        - name: Print variable     
+          run: echo "desplegado"
+  segundo_job_Deploy2: 
+        if: ${{ always() }}
+        #se ejecuta siempre asi tenga el needs
+        runs-on: ubuntu-latest
+        #depende del anterior job
+        needs: segundo_job_build
+
+        steps: 
+          - name: Print variable     
+            run: echo "desplegado"
+
+          
